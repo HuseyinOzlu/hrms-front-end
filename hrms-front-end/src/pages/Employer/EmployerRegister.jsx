@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Container } from 'semantic-ui-react';
-import '../App.css'
+import '../../App.css'
 
 
 export default function EmployerRegister() {
@@ -44,7 +44,7 @@ export default function EmployerRegister() {
         <br/>
         </Form>
         <br/>
-        <a href="/pages/Login.jsx"><Button negative>Do you already have an account ?</Button></a>
+        <a href="/pages/CandidateLogin.jsx"><Button negative>Do you already have an account ?</Button></a>
         </Container>
         </div>
     )

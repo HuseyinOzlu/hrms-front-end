@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import { Container } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
+
 
 export default function CandidateRegister() {
     return (
@@ -47,7 +49,7 @@ export default function CandidateRegister() {
         <br/>
         </Form>
         <br/>
-        <a href="/pages/Login.jsx"><Button negative>Do you already have an account ?</Button></a>
+        <Button as={NavLink} to="/pages/CandidateLogin.jsx" negative>Do you already have an account ?</Button>
         </Container>
         </div>
     )
