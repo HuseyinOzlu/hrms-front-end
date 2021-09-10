@@ -20,8 +20,8 @@ import jobService from '../../services/jobService';
             .string('Enter Job Title')
             .required('Job Title is required'),
         position: yup
-            .string('Enter position')
-            .required('Position is required'),
+            .string('Enter Work')
+            .required('Work is required'),
         date: yup
             .string('Enter Date')
             .required('Last date is required'),
@@ -66,10 +66,10 @@ export default function JobsAdd() {
         value: city.city_name,
     }));
 
-    const getWorkTypes = workTypes.map((workTypes, index) => ({
+    const getWorkType = workTypes.map((workType, index) => ({
         key: index,
-        text: workTypes.workTypesName,
-        value: workTypes.workTypesId,
+        text: workType.workerTypeName,
+        value: workType.id,
     }));
 
     const formik = useFormik({
@@ -83,7 +83,7 @@ export default function JobsAdd() {
             maxSalary: '',
             jobStatus: '',
             age: '',
-            jobType: '',
+            WorkType: '',
             },
             validationSchema: validationSchema,
             onSubmit: (values) => {
@@ -96,7 +96,7 @@ export default function JobsAdd() {
                 minSalary:   {minSalary: values.minSalary},
                 maxSalary:   {maxSalary: values.maxSalary},
                 isJobOpen:   {isJobOpen: values.jobStatus},
-                jobType:     {jobType: values.jobType},
+                workType:     {workTypeId: values.workType},
             };
             console.log(jobsAdd);
                     jobService.addJob(jobsAdd).then((result) => console.log(result.data.message));
@@ -115,13 +115,16 @@ export default function JobsAdd() {
             <Dropdown
             button
             search
+            fullWidth
             selection
-            id="city_id"
+            id="cityName"
             name="cityName"
             label="City"
             variant="outlined"
+            style={{margin: "auto", width: "100%"}}
             options={getCities}
             value={formik.values.city_id}
+            required
             onChange={(event, data) =>
                 formik.setFieldValue("city_id", data.value)
             }
@@ -134,13 +137,17 @@ export default function JobsAdd() {
                 <Dropdown 
                 button
                 search
+                selection
+                fullWidth
+                variant="outlined"
                 placeholder='Select Position Type'
                 fluid
-                id='positionId'
-                options={getWorkTypes}
-                value={formik.values.jobType}
+                style={{margin: "auto", top: "50%"}}
+                id='id'
+                options={getWorkType}
+                value={formik.values.workTypes}
                 onChange={(event, data) =>
-                formik.setFieldValue("positionId", data.value)
+                formik.setFieldValue("id", data.value)
                 }
                 required
                 />
@@ -151,6 +158,7 @@ export default function JobsAdd() {
             <TextField
             fullWidth
             id="companyName"
+            style={{margin: "auto"}}
             name="companyName"
             label="Company Name"
             variant="outlined"
@@ -174,13 +182,13 @@ export default function JobsAdd() {
             helperText={formik.touched.jobTitle && formik.errors.jobTitle}
             />
             <br/><br/>
-            <label>Position</label>
+            <label>Work</label>
                 <br/>
             <TextField
             fullWidth
             id="position"
             name="position"
-            label="Position"
+            label="Work"
             variant="outlined"
             value={formik.values.position}
             onChange={formik.handleChange}
