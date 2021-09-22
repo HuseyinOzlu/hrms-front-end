@@ -15,6 +15,7 @@ import SignOut from './layouts/SignOut';
 import SignIn from './layouts/SignIn';
 import EmployerLogin from './pages/Employer/EmployerLogin';
 import EmployersContent from './pages/Employer/EmployersContent';
+import Content from './pages/Content';
 
 
 function App() {
@@ -41,12 +42,18 @@ function App() {
     }
   return (
       <div className="App">
-        {/**
+      <Container>
+        <Dashboard/>
+      </Container>
+      {/**
          * Header layer - {Navi}
          */}
-              <div className="header">
-        <Menu inverted fixed="top" size='mini' style = {{
-            background: '#8B8B98'
+        <Container>
+              <div className="header" style={{
+                opacity: "0.5"
+              }}>
+        <Menu inverted fixed="top"  size='mini' style = {{
+            background: 'rgb(0, 102, 255)'
         }}>
         <Menu.Item>
             
@@ -61,16 +68,15 @@ function App() {
         </Menu.Item>
         </Menu.Menu>
         </Menu>
-        </div>
-      <Container className='main'>
-        <Dashboard/>
-      </Container>
+        </div></Container>
+      
       <br/><br/><br/>
         {/**
          * Content Layer
          */}
       <div>
-          <Route path="/" exact component={CandidateContent} />
+          <Route path="/" exact component={Content}/>
+          <Route path="/pages/CandidateContent" exact component={CandidateContent} />
           <Route path="/pages/EmployerRegister.jsx" exact component={EmployerRegister} />
           <Route path="/pages/CandidateRegister.jsx"exact component={CandidateRegister} />
           <Route path="/pages/EmployersContent.jsx" exact component={EmployersContent}/>

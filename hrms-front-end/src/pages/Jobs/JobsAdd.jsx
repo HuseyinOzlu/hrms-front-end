@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {Button, Dropdown,} from 'semantic-ui-react';
+import {Button, Dropdown, Input, Label} from 'semantic-ui-react';
 import CityService from '../../services/cityService';
 import WorkTypesService from '../../services/workTypesService';
 import jobService from '../../services/jobService';
@@ -121,7 +121,7 @@ export default function JobsAdd() {
             name="cityName"
             label="City"
             variant="outlined"
-            style={{margin: "auto", width: "100%"}}
+            style={{margin: "auto", width: "100%", top: "50%"}}
             options={getCities}
             value={formik.values.city_id}
             required
@@ -131,7 +131,7 @@ export default function JobsAdd() {
             error={formik.touched.cityName && Boolean(formik.errors.cityName)}
             helperText={formik.touched.cityName && formik.errors.cityName}
             /></div>
-            <br/><br/>
+            <br /><br/>
             <div>
                 <label>Position Type</label>
                 <Dropdown 
@@ -140,9 +140,8 @@ export default function JobsAdd() {
                 selection
                 fullWidth
                 variant="outlined"
-                placeholder='Select Position Type'
                 fluid
-                style={{margin: "auto", top: "50%"}}
+                style={{margin: "auto", width: "100%"}}
                 id='id'
                 options={getWorkType}
                 value={formik.values.workTypes}
@@ -151,14 +150,15 @@ export default function JobsAdd() {
                 }
                 required
                 />
+                <br/>
             </div>
             <div>
             <label>Company Name</label>
                 <br/>
             <TextField
             fullWidth
+            autoComplete="off"
             id="companyName"
-            style={{margin: "auto"}}
             name="companyName"
             label="Company Name"
             variant="outlined"
@@ -176,6 +176,8 @@ export default function JobsAdd() {
             name="jobTitle"
             label="Job Title"
             variant="outlined"
+            style={classes}
+            className="textfield"
             value={formik.values.jobTitle}
             onChange={formik.handleChange}
             error={formik.touched.jobTitle && Boolean(formik.errors.jobTitle)}
@@ -189,8 +191,11 @@ export default function JobsAdd() {
             id="position"
             name="position"
             label="Work"
+            type="text"
+            className="textfield"
             variant="outlined"
             value={formik.values.position}
+            style={{borderBottom: "none"}}
             onChange={formik.handleChange}
             error={formik.touched.position && Boolean(formik.errors.position)}
             helperText={formik.touched.position && formik.errors.position}
@@ -213,32 +218,41 @@ export default function JobsAdd() {
             <br/><br/>
             <label>Min. Salary</label>
                 <br/>
-            <TextField
-            fullWidth
-            id="minSalary"
-            name="minSalary"
-            label="Min. Salary"
-            type="number"
-            variant="outlined"
-            value={formik.values.minSalary}
-            onChange={formik.handleChange}
-            error={formik.touched.minSalary && Boolean(formik.errors.minSalary)}
-            helperText={formik.touched.minSalary && formik.errors.minSalary}
-            />
+                <Input labelPosition='right' fullWidth style={{width: "100%"}} type='text' placeholder='Amount'>
+                    <Label basic><p style={{margin: "auto"}}>$</p></Label>
+                    <TextField
+                        fullWidth
+                        id="minSalary"
+                        name="minSalary"
+                        label="Min. Salary"
+                        type="number"
+                        variant="outlined"
+                        value={formik.values.minSalary}
+                        onChange={formik.handleChange}
+                        error={formik.touched.minSalary && Boolean(formik.errors.minSalary)}
+                        helperText={formik.touched.minSalary && formik.errors.minSalary}
+                    />
+                    <Label><p style={{margin: "auto"}}>.00</p></Label>
+                </Input>
             <br/><br/>
             <label>Max Salary</label>
-            <TextField
-            fullWidth
-            id="maxSalary"
-            name="maxSalary"
-            label="Max. Salary"
-            type="number"
-            variant="outlined"
-            value={formik.values.maxSalary}
-            onChange={formik.handleChange}
-            error={formik.touched.maxSalary && Boolean(formik.errors.maxSalary)}
-            helperText={formik.touched.maxSalary && formik.errors.maxSalary}
-            />
+            <br/>
+            <Input fullWidth style={{width: "100%"}} labelPosition='right' type='text' placeholder='Amount'>
+                    <Label basic><p style={{margin: "auto"}}>$</p></Label>
+                    <TextField
+                        fullWidth
+                        id="maxSalary"
+                        name="maxSalary"
+                        label="Max. Salary"
+                        type="number"
+                        variant="outlined"
+                        value={formik.values.maxSalary}
+                        onChange={formik.handleChange}
+                        error={formik.touched.maxSalary && Boolean(formik.errors.maxSalary)}
+                        helperText={formik.touched.maxSalary && formik.errors.maxSalary}
+                    />
+                    <Label><p style={{margin: "auto"}}>.00</p></Label>
+                </Input>
             <br/><br/>
             <label>Job Status</label>
                 <br/>

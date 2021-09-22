@@ -22,13 +22,13 @@ export default function Navi() {
     return (
         <div className="header">
         <Menu inverted fixed="top" size='mini' style = {{
-            background: '#8B8B98'
+            background: '#000'
         }}>
         <Menu.Item>
             
         </Menu.Item>
         <Menu.Item>
-            <h1><i>Human Resources Manage System</i></h1>
+            <a href="/"><i>Human Resources Manage System</i></a>
         </Menu.Item>
         <Menu.Menu position='right' >
         <Menu.Item>
